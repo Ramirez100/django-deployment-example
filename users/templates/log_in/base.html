@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="{% url 'index' %}">Home</a>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
+              </li>
+               <li class="nav-item">
+                <a class="nav-link" href="{% url 'log_in:register' %}">Register</a>
+               </li>
+
+                {% if user.is_authenticated %}
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'appstore' %}">Enter the Appstore</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+
+                {% else %}
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'log_in:user_login' %}">Log In</a>
+                </li>
+
+                {% endif %}
+
+            </ul>
+
+          </div>
+        </nav>
+    </div>
+
+    <div class="container">
+    {% block body_block %}
+    {% endblock %}
+    </div>
+
+
+</body>
+</html>
